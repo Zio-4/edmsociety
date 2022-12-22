@@ -12,8 +12,10 @@ const filters = () => {
             <div className='text-slate-100 flex space-x-10'>
                 {filterCategories.map(cat => <ul key={cat} className='bg-fuchsia-500 py-1 px-4 rounded-full transition duration-500 hover:scale-125 cursor-pointer'>{cat}</ul>)}
             </div>
-
-            <Searchbar value={search} setSearch={setSearch} width={'1/2'}/>
+            
+            <div className='w-1/2 m-auto'>
+                <Searchbar value={search} setSearch={setSearch}/>
+            </div>
         </div>
     </div>
   )

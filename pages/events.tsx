@@ -7,7 +7,9 @@ const events = () => {
 
   return (
     <div>
-        <Searchbar value={search} setSearch={setSearch} width={'3/12'}/>
+        <div className='w-2/12 m-auto'>
+            <Searchbar value={search} setSearch={setSearch}/>
+        </div>
     </div>
   )
 }

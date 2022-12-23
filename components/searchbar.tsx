@@ -1,5 +1,5 @@
 import React from 'react'
-import { iSearchBar } from '../interfaces/music/interface'
+import { iSearchBar } from '../lib/interfaces/music/interface'
 
 const searchbar = ({value, setSearch}: iSearchBar) => {
   return (

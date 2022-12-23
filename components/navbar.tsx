@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useSession, signIn, signOut } from "next-auth/react"
 
 interface iChildren {
     children: any
@@ -8,8 +9,9 @@ interface iChildren {
 
 const navbar = ({ children }: iChildren) => {
     const router = useRouter()
+    const { data: session } = useSession()
 
-
+    console.log('auth session: ', session)
 
   return (
     <>
@@ -26,7 +28,11 @@ const navbar = ({ children }: iChildren) => {
                         <Link href='/groups' className={`text-xl font-semibold hover:text-slate-300 ${router.pathname === '/groups' && 'underline underline-offset-4 decoration-violet-300'}`}>Groups</Link>
                     </div>
                 </div>
-                <button className='bg-indigo-400 rounded-full px-5 py-1 text-slate-100 hover:bg-indigo-500'>Sign In</button>
+                {session ? (
+                    <button onClick={() => signOut()} className='bg-red-400 rounded-full px-5 py-1 text-slate-100 hover:bg-red-500'>Sign Out</button>
+                ) : (
+                    <button onClick={() => signIn()} className='bg-indigo-400 rounded-full px-5 py-1 text-slate-100 hover:bg-indigo-500'>Sign In</button>
+                )}
             </div>
         </div>
         

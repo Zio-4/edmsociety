@@ -2,6 +2,8 @@ import React from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useSession, signIn, signOut } from "next-auth/react"
+import Image from 'next/image'
+import ProfilePlaceholder from '../assets/profile-placeholder.png'
 
 interface iChildren {
     children: any
@@ -29,7 +31,10 @@ const navbar = ({ children }: iChildren) => {
                     </div>
                 </div>
                 {session ? (
-                    <button onClick={() => signOut()} className='bg-red-400 rounded-full px-5 py-1 text-slate-100 hover:bg-red-500'>Sign Out</button>
+                    <div>
+                        <Image onClick={() => router.push('/profile')} src={session.user?.image || ProfilePlaceholder} alt='profile avatar' width={32} height={32} className='inline-block rounded-full mr-8 cursor-pointer'/>
+                        <button onClick={() => signOut()} className='bg-red-400 rounded-full px-5 py-1 text-slate-100 hover:bg-red-500'>Sign Out</button>
+                    </div>
                 ) : (
                     <button onClick={() => signIn()} className='bg-indigo-400 rounded-full px-5 py-1 text-slate-100 hover:bg-indigo-500'>Sign In</button>
                 )}
